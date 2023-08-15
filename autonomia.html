@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Autonomia de Mergulho</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Calculadora de Autonomia de Mergulho</h1>
+                    </div>
+                    <div class="card-body">
+                        <form id="autonomiaForm">
+                            <div class="mb-3">
+                                <label for="profundidade" class="form-label">Profundidade Estimada (metros):</label>
+                                <input type="number" id="profundidade" step="0.1" required class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pressaoAtmosferica" class="form-label">Pressão Atmosférica (atm):</label>
+                                <input type="number" id="pressaoAtmosferica" step="0.01" disabled class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tcsEstimada" class="form-label">TCS Estimada (litros/min):</label>
+                                <input type="number" id="tcsEstimada" step="0.01" required class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="arCilindro" class="form-label">Quantidade de Ar no Cilindro (bar):</label>
+                                <input type="number" id="arCilindro" step="0.01" required class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="volumeCilindroPes" class="form-label">Volume do Cilindro (pés cúbicos):</label>
+                                <input type="number" id="volumeCilindroPes" step="0.01" required class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="volumeCilindroLitros" class="form-label">Volume do Cilindro (litros):</label>
+                                <input type="number" id="volumeCilindroLitros" step="0.01" disabled class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Calcular Autonomia</button>
+                        </form>
+                        <div class="mt-3">
+                            <p id="resultado" class="text-center"></p>
+                            <p id="resultadoSobra" class="text-center"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const autonomiaForm = document.getElementById('autonomiaForm');
+        const resultadoDiv = document.getElementById('resultado');
+        const resultadoSobraDiv = document.getElementById('resultadoSobra');
+
+        autonomiaForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const profundidade = parseFloat(document.getElementById('profundidade').value);
+            const tcsEstimada = parseFloat(document.getElementById('tcsEstimada').value);
+            const arCilindro = parseFloat(document.getElementById('arCilindro').value);
+            const volumeCilindroPes = parseFloat(document.getElementById('volumeCilindroPes').value);
+
+            const pressaoAtmosferica = 1 + (profundidade / 10);
+            document.getElementById('pressaoAtmosferica').value = pressaoAtmosferica.toFixed(2);
+
+            const volumeCilindroLitros = volumeCilindroPes * 0.1415;
+            document.getElementById('volumeCilindroLitros').value = volumeCilindroLitros.toFixed(2);
+
+            const autonomiaMinutos = (volumeCilindroLitros * arCilindro) / (tcsEstimada * pressaoAtmosferica);
+            resultadoDiv.innerHTML = `Autonomia Estimada: ${autonomiaMinutos.toFixed(2)} minutos`;
+
+            const autonomiaComSobraMinutos = (volumeCilindroLitros * (arCilindro - 50)) / (tcsEstimada * pressaoAtmosferica);
+            resultadoSobraDiv.innerHTML = `Autonomia com Sobra de 50 bar: ${autonomiaComSobraMinutos.toFixed(2)} minutos`;
+        });
+    </script>
+</body>
+</html>
