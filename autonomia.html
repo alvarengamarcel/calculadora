@@ -49,11 +49,14 @@
                             <p id="resultadoSobra" class="text-center"></p>
                         </div>
                     </div>
+                    <!-- Botão de Voltar no final da página -->
+                    <div class="card-footer text-center">
+                        <a href="https://alvarengamarcel.github.io/calculadora/" class="btn btn-secondary">Voltar</a>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <script>
         const autonomiaForm = document.getElementById('autonomiaForm');
         const resultadoDiv = document.getElementById('resultado');
@@ -79,6 +82,10 @@
             const autonomiaComSobraMinutos = (volumeCilindroLitros * (arCilindro - 50)) / (tcsEstimada * pressaoAtmosferica);
             resultadoSobraDiv.innerHTML = `Autonomia com Sobra de 50 bar: ${autonomiaComSobraMinutos.toFixed(2)} minutos`;
         });
+        // Função para redirecionar para a página principal
+        function goToHomePage() {
+            window.location.href = "https://alvarengamarcel.github.io/calculadora/";
+        }
     </script>
 </body>
 </html>
