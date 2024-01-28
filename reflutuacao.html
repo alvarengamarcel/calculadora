@@ -52,7 +52,14 @@
             <div id="resultado" class="mt-4"></div>
         </div>
     </div>
-
+<!-- Botão de Voltar no final da página -->
+                    <div class="card-footer text-center">
+                        <a href="https://alvarengamarcel.github.io/calculadora/" class="btn btn-secondary">Voltar</a>
+                         </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         const reflutuacaoForm = document.getElementById('reflutuacaoForm');
         const resultadoDiv = document.getElementById('resultado');
@@ -79,6 +86,10 @@
                 <p><strong>Quantidade Necessária de Cilindros:</strong> ${quantidadeCilindros.toFixed(2)}</p>
                 <p><strong>Tamanho do Lift Bag Necessário:</strong> ${tamanhoLiftBagKilos.toFixed(2)} kg</p>`;
         });
+        // Função para redirecionar para a página principal
+        function goToHomePage() {
+            window.location.href = "https://alvarengamarcel.github.io/calculadora/";
+        }
     </script>
 </body>
 </html>
