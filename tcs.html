@@ -66,7 +66,15 @@
         </form>
         <div id="resultado"></div>
     </div>
-
+<!-- Botão de Voltar no final da página -->
+                    <div class="card-footer text-center">
+                        <a href="https://alvarengamarcel.github.io/calculadora/" class="btn btn-secondary">Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const tcsForm = document.getElementById('tcsForm');
@@ -87,6 +95,10 @@
 
             resultadoDiv.innerHTML = `TCS: ${tcs.toFixed(2)} litros/min`;
         });
+        // Função para redirecionar para a página principal
+        function goToHomePage() {
+            window.location.href = "https://alvarengamarcel.github.io/calculadora/";
+        }
     </script>
 </body>
 </html>
